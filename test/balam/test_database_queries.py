@@ -12,7 +12,6 @@ from ds_db_access.balam.database_queries import insert_observations_method
 
 
 from ds_db_access.balam.balam_models import Events
-from ds_db_access.balam.balam_models import EventsFiles
 from ds_db_access.balam.balam_models import Observations
 from ds_db_access.balam.balam_models import ObservationMethod
 from ds_db_access.balam.balam_models import ObservationGeom

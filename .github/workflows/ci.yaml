@@ -2,24 +2,33 @@ name: CI
 
 on:
   push:
-  pull_request:
+    branches:
+      - main
 
 jobs:
-  run-tests:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest,macos-latest,windows-latest]
-        python-version:
-          - "3.7"
-          - "3.9"
-          - "3.8"
-    name: Test
-    runs-on: ${{ matrix.os }}
+  build:
+    runs-on: ubuntu-latest
+
+  env:
+      DB_BALAM_TEST_ENGINE: ${{ secrets.DB_BALAM_TEST_ENGINE }}
+      DB_BALAM_TEST_USER: ${{ secrets.DB_BALAM_TEST_USER }}
+      DB_BALAM_TEST_PASSWORD: ${{ secrets.DB_BALAM_TEST_PASSWORD }}
+      DB_BALAM_TEST_HOST: ${{ secrets.DB_BALAM_TEST_HOST}}
+      DB_BALAM_TEST_PORT: ${{ secrets.DB_BALAM_TEST_PORT}}
+      DB_BALAM_TEST_NAME: ${{ secrets.DB_BALAM_TEST_NAME}}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: set up Python
-        uses: actions/set-up@v4
-        with: 
-          python-version: ${{ matrix.python-version }}$
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Ejecutar Comandos de Pythcleon
+        run: |
+          python --version
+          pip install -r requirements.txt
+          pytest test/balam/test_database_queries.py
+      
