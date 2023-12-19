@@ -22,14 +22,9 @@ from ds_db_access.balam.balam_models import ProcessedFiles
 from ds_db_access.balam.balam_models import Users
 from ds_db_access.balam.balam_models import EventsFiles
 from ds_db_access.balam.balam_models import Events
-
-
 import uuid
-from conabio_ml.utils.logger import get_logger
 
 from ds_db_access.balam.params_db import DATETIME
-
-logger = get_logger(__name__)
 
 # region INSERT FUNCTIONS
 
