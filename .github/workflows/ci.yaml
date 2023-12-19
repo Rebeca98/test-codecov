@@ -28,5 +28,14 @@ jobs:
         run: |
           python --version
           pip install -r requirements.txt
-          pytest test/balam/test_database_queries.py
+
+      - name: Run tests with coverage
+        run: |
+          pytest --cov=src --cov-report=xml test/balam/test_database_queries.py
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
       
