@@ -262,7 +262,7 @@ def test_insert_processed_file_with_nonexistent_file():
     nonexistent_file_id = 'a0a48006-9a3f-46f4-a8a8-f99b4f298f73'
     pipeline_id = 'a0a48006-9a3f-46f4-a8a8-f99b4f298f73'
 
-    with pytest.raises(ValueError, match=f"File with id {nonexistent_file_id} does not exist in the Files table."):
+    with pytest.raises(DoesNotExist, match=f"Files with id {nonexistent_file_id} does not exist in the Files table."):
         insert_processed_files(file_id=nonexistent_file_id,
                                pipeline_id=pipeline_id)
 
@@ -278,7 +278,8 @@ def test_insert_processed_file_with_nonexistent_pipeline():
     file_id = '7085a407-d9c5-455a-a4b1-365301363a8e'
     nonexistent_pipeline_id = '7085a407-d9c5-455a-a4b1-365301363a8e'
 
-    with pytest.raises(ValueError, match=f"Pipeline with id {nonexistent_pipeline_id} does not exist in the PipelineInfo table."):
+    with pytest.raises(DoesNotExist, match=f"Pipeline with id {nonexistent_pipeline_id} does not exist in the PipelineInfo table."):
+
         insert_processed_files(file_id=file_id,
                                pipeline_id=nonexistent_pipeline_id)
 
@@ -396,7 +397,7 @@ def test_insert_observation_with_nonexistent_file():
     """Attempting to insert an observation with a non-existent file ID
     """
     nonexistent_file_id = '9754e2ad-f575-40e3-b568-3c4525ac7421'
-    with pytest.raises(ValueError, match=f"File with id {nonexistent_file_id} does not exist in the Files table."):
+    with pytest.raises(DoesNotExist, match=f"Files with id {nonexistent_file_id} does not exist in the Files table."):
 
         insert_observations_and_observations_geom(
             file_id=nonexistent_file_id,
@@ -422,7 +423,7 @@ def test_insert_observation_with_nonexistent_pipeline():
     nonexistent_pipeline_id = '9754e2ad-f575-40e3-b568-3c4525ac7421'
 
     # Use pytest.raises to check if a ValueError is raised
-    with pytest.raises(ValueError, match=f"Pipeline with id {nonexistent_pipeline_id} does not exist in the PipelineInfo table."):
+    with pytest.raises(DoesNotExist, match=f"Pipeline with id {nonexistent_pipeline_id} does not exist in the PipelineInfo table."):
 
         insert_observations_and_observations_geom(
             file_id='95c80f34-14c4-43c0-b1e4-a427742578a2',
@@ -445,7 +446,7 @@ def test_insert_observation_with_nonexistent_user():
     """Attempting to insert an observation with a non-existent user ID
     """
     nonexistent_user_id = '9754e2ad-f575-40e3-b568-3c4525ac7421'
-    with pytest.raises(ValueError, match=f"Users with id {nonexistent_user_id} does not exist in the Users table."):
+    with pytest.raises(DoesNotExist, match=f"Users with id {nonexistent_user_id} does not exist in the Users table."):
 
         insert_observations_and_observations_geom(
             file_id='95c80f34-14c4-43c0-b1e4-a427742578a2',
@@ -468,7 +469,7 @@ def test_insert_observation_with_nonexistent_observation_method():
     """Attempting to insert an observation with a non-existent observation method ID
     """
     nonexistent_obs_method_id = '9754e2ad-f575-40e3-b568-3c4525ac7421'
-    with pytest.raises(ValueError, match=f"ObservationMethod with id {nonexistent_obs_method_id} does not exist in the ObservationMethod table."):
+    with pytest.raises(DoesNotExist, match=f"ObservationMethod with id {nonexistent_obs_method_id} does not exist in the ObservationMethod table."):
 
         insert_observations_and_observations_geom(
             file_id='95c80f34-14c4-43c0-b1e4-a427742578a2',
@@ -641,6 +642,7 @@ def test_insert_non_existing_event_id_eventsfiles():
     """_summary_
     """
     with pytest.raises(DoesNotExist):
+        # pytest.raises(DoesNotExist, match=f"ObservationMethod with id {nonexistent_obs_method_id} does not exist in the ObservationMethod table.")
         insert_events_files(event_id='0c888139-8103-4f4f-af52-cac73abe6743',
                             file_id='95c80f34-14c4-43c0-b1e4-a427742578a2')
 
@@ -649,6 +651,7 @@ def test_insert_non_existing_file_id_eventsfiles():
     """_summary_
     """
     with pytest.raises(DoesNotExist):
+        # pytest.raises(DoesNotExist, match=f"ObservationMethod with id {nonexistent_obs_method_id} does not exist in the ObservationMethod table.")
         insert_events_files(event_id='25433691-a649-4688-ac31-41bc534c85fa',
                             file_id='bb2d6dc1-ec29-4bc1-b277-af18a87821e7')
 # endregion
@@ -660,6 +663,7 @@ def test_get_nonexistent_event():
     """Attempting to retrieve a non-existent event
     """
     with pytest.raises(DoesNotExist):
+        # pytest.raises(DoesNotExist, match=f"ObservationMethod with id {nonexistent_obs_method_id} does not exist in the ObservationMethod table.")
         Events.get(Events.id == '7202aed1-86b1-4495-8707-93c35921f434')
 
 

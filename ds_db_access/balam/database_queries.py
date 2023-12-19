@@ -22,10 +22,14 @@ from ds_db_access.balam.balam_models import ProcessedFiles
 from ds_db_access.balam.balam_models import Users
 from ds_db_access.balam.balam_models import EventsFiles
 from ds_db_access.balam.balam_models import Events
-from ds_db_access.balam.params_db import DATETIME
+
 
 import uuid
+from conabio_ml.utils.logger import get_logger
 
+from ds_db_access.balam.params_db import DATETIME
+
+logger = get_logger(__name__)
 
 # region INSERT FUNCTIONS
 
@@ -141,7 +145,7 @@ def insert_processed_files(file_id: str, pipeline_id: str) -> str:
         raise DoesNotExist(f"Files with id {file_id} does not exist in the Files table.")
     if not PipelineInfo.select().where(PipelineInfo.id == pipeline_id).exists():
         raise DoesNotExist(
-            f"Pipeline with id {pipeline_id} does not exist in the PipelineInfo table")
+            f"Pipeline with id {pipeline_id} does not exist in the PipelineInfo table.")
 
     combined_id = uuid.uuid5(uuid.NAMESPACE_DNS, f"{file_id}{pipeline_id}")
 
@@ -230,14 +234,14 @@ def insert_observations_and_observations_geom(file_id: str,
 
     if not PipelineInfo.select().where(PipelineInfo.id == pipeline_id).exists():
         raise DoesNotExist(
-            f"Pipeline with id {pipeline_id} does not exist in the PipelineInfo table")
+            f"Pipeline with id {pipeline_id} does not exist in the PipelineInfo table.")
 
     if not Users.select().where(Users.id == user_id).exists():
-        raise DoesNotExist(f"Users with id {user_id} does not exist in the Users table")
+        raise DoesNotExist(f"Users with id {user_id} does not exist in the Users table.")
 
     if not ObservationMethod.select().where(ObservationMethod.id == observation_method_id).exists():
         raise DoesNotExist(
-            f"ObservationMethod with id {observation_method_id} does not exist in the ObservationMethod table")
+            f"ObservationMethod with id {observation_method_id} does not exist in the ObservationMethod table.")
 
     data_obs = {Observations.id: str(observation_id),
                 Observations.created_at: datetime.datetime.now(),
