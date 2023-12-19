@@ -1,6 +1,4 @@
 # Test Successful Insertion
-import uuid
-
 import pytest
 
 from ds_db_access.balam.database_queries import insert_events
@@ -632,11 +630,11 @@ def test_insert_events_files(event_id, file_id):
 def test_insert_duplicate_events_files():
     """Attempting to insert a duplicate EventsFiles record
     """
-    insert_events_files(event_id='25433691-a649-4688-ac31-41bc534c85fa',
+    insert_events_files(event_id='b24c7ad0-98cf-4057-8e98-c4d803b64e63',
                         file_id='95c80f34-14c4-43c0-b1e4-a427742578a2')
 
     with pytest.raises(IntegrityError):
-        insert_events_files(event_id='25433691-a649-4688-ac31-41bc534c85fa',
+        insert_events_files(event_id='b24c7ad0-98cf-4057-8e98-c4d803b64e63',
                             file_id='95c80f34-14c4-43c0-b1e4-a427742578a2')
 
 
