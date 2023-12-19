@@ -14,7 +14,7 @@ jobs:
         DB_BALAM_TEST_HOST: ${{ secrets.DB_BALAM_TEST_HOST}}
         DB_BALAM_TEST_PORT: ${{ secrets.DB_BALAM_TEST_PORT}}
         DB_BALAM_TEST_NAME: ${{ secrets.DB_BALAM_TEST_NAME}}
-
+        PYTHONPATH: ${{ github.workspace }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
