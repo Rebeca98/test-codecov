@@ -4,5 +4,5 @@ source = ds_db_access/balam
 
 [report]
 omit =
-    tests/*
+    tests/balam/*
     */__init__.py
