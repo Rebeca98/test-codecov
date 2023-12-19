@@ -7,13 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-  env:
-      DB_BALAM_TEST_ENGINE: ${{ secrets.DB_BALAM_TEST_ENGINE }}
-      DB_BALAM_TEST_USER: ${{ secrets.DB_BALAM_TEST_USER }}
-      DB_BALAM_TEST_PASSWORD: ${{ secrets.DB_BALAM_TEST_PASSWORD }}
-      DB_BALAM_TEST_HOST: ${{ secrets.DB_BALAM_TEST_HOST}}
-      DB_BALAM_TEST_PORT: ${{ secrets.DB_BALAM_TEST_PORT}}
-      DB_BALAM_TEST_NAME: ${{ secrets.DB_BALAM_TEST_NAME}}
+    env:
+        DB_BALAM_TEST_ENGINE: ${{ secrets.DB_BALAM_TEST_ENGINE }}
+        DB_BALAM_TEST_USER: ${{ secrets.DB_BALAM_TEST_USER }}
+        DB_BALAM_TEST_PASSWORD: ${{ secrets.DB_BALAM_TEST_PASSWORD }}
+        DB_BALAM_TEST_HOST: ${{ secrets.DB_BALAM_TEST_HOST}}
+        DB_BALAM_TEST_PORT: ${{ secrets.DB_BALAM_TEST_PORT}}
+        DB_BALAM_TEST_NAME: ${{ secrets.DB_BALAM_TEST_NAME}}
 
     steps:
       - name: Checkout code
