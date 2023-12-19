@@ -1,6 +1,6 @@
 [run]
 branch = True
-source = src
+source = ds_db_access/balam
 
 [report]
 omit =
