@@ -1,3 +1,4 @@
+pytest
 peewee
 pandas
 psycopg2-binary
