@@ -1,4 +1,3 @@
-# Test Successful Insertion
 import pytest
 
 from ds_db_access.balam.database_queries import insert_events
