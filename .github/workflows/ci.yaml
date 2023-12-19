@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  run-tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest,macos-latest,windows-latest]
+        python-version:
+          - "3.7"
+          - "3.9"
+          - "3.8"
+    name: Test
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: set up Python
+        uses: actions/set-up@v4
+        with: 
+          python-version: ${{ matrix.python-version }}$
